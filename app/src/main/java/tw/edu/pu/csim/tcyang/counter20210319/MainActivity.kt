@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(),
     View.OnClickListener ,View.OnLongClickListener {
 
-    var counter:Int = 0
+    var counter: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,35 +20,39 @@ class MainActivity : AppCompatActivity(),
         btn.setOnClickListener(this)
         btn2.setOnClickListener(this)
         btn3.setOnClickListener(this)
-        btnhappy.setOnClickListener(object :View.OnClickListener{
+        btnhappy.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                counter= (1..100).random()
+                counter = (1..100).random()
                 txv.text = counter.toString()
             }
 
         })
+
+        img.setOnLongClickListener(this)
     }
 
 
-
     override fun onClick(v: View?) {
-        if (v==txv || v==btn){
+        if (v == txv || v == btn) {
             counter++
-        }
-       else if(v==btn2){
-            counter +=2
-        }
-        else{
-            counter=0
+        } else if (v == btn2) {
+            counter += 2
+        } else {
+            counter = 0
         }
         txv.text = counter.toString()
     }
 
     override fun onLongClick(v: View?): Boolean {
-        counter +=2
-        txv.text = counter.toString()
-        return true
+        if (v == txv){
+            counter += 2
     }
+    else {
+        counter--
+    }
+    txv.text = counter.toString()
+    return true
+ }
 
 
 }
